@@ -58,11 +58,11 @@ p {
 }
 
 #view-high-btn {
-    font-size: 25px;
+    font-size: 20px;
     padding: 5px 0;
-    width: 200px;
+    width: 180px;
     text-align: center;
-    background-color: rgb(28, 162, 169);
+    background-color: rgb(204, 231, 52);
     border-radius: 10px;
 }
 
@@ -82,6 +82,10 @@ p {
     padding: 10px 0;
     width: 500px;
     text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     background-color: rgb(28, 162, 169);
     border-radius: 10px;
     margin-bottom: 10px;

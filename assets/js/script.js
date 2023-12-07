@@ -1,12 +1,12 @@
 // these are the variables that call the html elements
 var startEl = document.querySelector(".start-quiz");
 var quizScreen = document.querySelector(".quiz-screen");
-var allDoneEl = document.querySelector(".all-done");
+var scorePage = document.querySelector(".save-score");
 var highscores = document.querySelector(".highscores");
 var questionsEl = document.querySelector("#questions");
 var answerChoices = document.querySelector("#answers");
 var timerInterval;
-var timeLeft = 100;
+var timeLeft = 10;
 var timeEl = document.getElementById("timer");
 var QI = 0;
 var score = 0;
@@ -128,8 +128,9 @@ function clockTick() {
     timeLeft = 0;
     timeEl.textContent = 0;
     clearInterval(timerInterval);
+    quizScreen.classList.add("hide");
+    scorePage.classList.remove("hide");
   };
-  console.log(timeLeft);
 };
 
 // funtion to call questions and allow user to choose answer
@@ -144,6 +145,7 @@ function askQuestion() {
     btn.onclick = function () {
       if (this.value === questions[QI].answer) {
         score++;
+        .textContent = "Correct!"
       } else {
         timeLeft -= 10;
       }
@@ -155,12 +157,14 @@ function askQuestion() {
       }
     };
     document.getElementById("answers").appendChild(btn);
+
   });
 };
 
 // function that ends game once timer or questions run out
 function endGame() {
   // get score variable
+  score 
   // get time left variable
   // display end game screen with input for initials
   // add button
