@@ -3,9 +3,8 @@ var startEl = document.querySelector('.start-quiz');
 var questionsEl = document.querySelector('.questions');
 var allDoneEl = document.querySelector('.all-done');
 var highscores = document.querySelector('.highscores');
-
-var questions = '';
-var answerChoices = '';
+var questions = document.querySelector('#questions');
+var answerChoices = document.querySelector('#answers');
 var timer;
 
 // these are the array of questions

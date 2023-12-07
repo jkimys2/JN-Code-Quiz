@@ -13,32 +13,33 @@
 
 
 <body>
-    <main class="card">
+    <section class="card">
         <h1>Code Quiz Challenge</h1>
-        <p>Answer the following questions about HTML, CSS, and JavaScript within the time limit. Keep in mind that selecting incorrect answers will decrease your timer by 10 seconds!</p>
+        <p>Answer the following questions about HTML, CSS, and JavaScript within the time limit.
+        <br>Keep in mind that selecting incorrect answers will decrease your timer by 10 seconds!</p>
         <button id="start-quiz-btn">Start Quiz</button>
-    </main>
+    </section>
 
     <section>
         <button id="view-high-btn">View Highscores!</button>
-        <article id="timer">Time:</article>
+        <h3 id="timer">Time:</h3>
     </section>
 
-    <section class="questions">
+    <section class="card">
         <h1 id="questions"></h1>
         <h2 id="answers"></h2>
     </section>
 
-    <section class="all-done">
+    <section class="card">
         <h1>All Done!</h1>
-        <button id="submit-btn">Submit</button>
+        <button class="button">Submit</button>
     </section>
     
-    </section class="highscores">
+    <section class="card">
         <h1>Highscores:</h1>
-        <button id="back-btn">Go Back</button>
-        <button id="clear-hs-btn">Clear Highscores</button>
-    <section>
+        <button class="btn">Go Back</button>
+        <button class="btn">Clear Highscores</button>
+    </section>
 
     <!-- this is the JavaScript file for this page -->
     <script src="./assets/js/script.js"></script>
