@@ -1,22 +1,39 @@
 :root {
-    background-color: aliceblue;
+    background-color: rgb(21, 12, 23);
 }
+
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
     font-size: 20px;
-    font-family:Arial, Helvetica, sans-serif
-    
+    font-family:Arial, Helvetica, sans-serif    
 }
 
 h1 {
     font-size: 45px;
     font-weight: bolder;
+    color: aliceblue;
+    margin-bottom: 10px;
+}
+
+h2 {
+    font-size: 25px;
+    color: aliceblue;
+    margin-bottom: 5px;
+}
+
+p {
+    color: aliceblue;
 }
 
 .card {
-    padding-top: 100px;
+    width: 100vw;
+    height: 100vs;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
     
 }
 
