@@ -13,21 +13,23 @@
 
 
 <body>
-    <section class="card">
-        <h1>Code Quiz Challenge</h1>
-        <p>Answer the following questions about HTML, CSS, and JavaScript within the time limit.
-        <br>Keep in mind that selecting incorrect answers will decrease your timer by 10 seconds!</p>
-        <button class="btn">Start Quiz</button>
-    </section>
-
-    <section>
+    <header>
         <button id="view-high-btn">View Highscores!</button>
+        <h1>Code Quiz Challenge</h1>
         <h3 id="timer">Time:</h3>
+        <div>
+            <p>Answer the following questions about HTML, CSS, and JavaScript within the time limit.
+                <br>Keep in mind that selecting incorrect answers will decrease your timer by 10 seconds!</p>
+        </div>
+    </header>
+    <section class="card start-screen">
+        <button class="btn start-quiz">Start Quiz</button>
     </section>
 
-    <section class="card">
-        <h1 id="questions"></h1>
-        <h2 id="answers"></h2>
+
+    <section class="card quiz-screen hide">
+        <h1 id="questions">Question goes here</h1>
+        <div id="answers"></div>
     </section>
 
     <section class="card">
