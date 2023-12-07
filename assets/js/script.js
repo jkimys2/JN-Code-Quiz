@@ -19,7 +19,7 @@ var questions = [
     'Which HTML element does JavaScript go in?',
     'True or False: JavaScript is the same as Java.',
     'Which operator is used to assign a value to a variable?',
-    'True or False: JavaScript is NOT case-sensitive.'
+    'True or False: JavaScript is case-sensitive.'
 ]
 
 function startQuiz() {
