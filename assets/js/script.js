@@ -1,7 +1,7 @@
 // these are the variables that call the html elements
 var startEl = document.querySelector(".start-quiz");
 var quizScreen = document.querySelector(".quiz-screen");
-var scorePage = document.querySelector(".save-score");
+var gameOverPage = document.querySelector(".save-score");
 var highscores = document.querySelector(".highscores");
 var questionsEl = document.querySelector("#questions");
 var answerChoices = document.querySelector("#answers");
@@ -128,8 +128,7 @@ function clockTick() {
     timeLeft = 0;
     timeEl.textContent = 0;
     clearInterval(timerInterval);
-    quizScreen.classList.add("hide");
-    scorePage.classList.remove("hide");
+    endGame()
   };
 };
 
@@ -145,7 +144,6 @@ function askQuestion() {
     btn.onclick = function () {
       if (this.value === questions[QI].answer) {
         score++;
-        .textContent = "Correct!"
       } else {
         timeLeft -= 10;
       }
@@ -163,11 +161,17 @@ function askQuestion() {
 
 // function that ends game once timer or questions run out
 function endGame() {
-  // get score variable
-  score 
+    quizScreen.classList.add("hide");
+    gameOverPage.classList.remove("hide");
+    var gameOverInput = document.createElement("input");
+    gameOverInput.setAttribute("class", "input")
+    gameOverInput.textContent = "Enter Initials: " +
+    document.getElementsByClassName("save-score").appendChild(gameOverInput);
+  // get score variable 
   // get time left variable
   // display end game screen with input for initials
   // add button
+  
 };
 
 // function to save game score
