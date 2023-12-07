@@ -1,0 +1,21 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+    background-color: aliceblue;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif
+}
+
+.start-quiz {
+    padding-top: 100px;
+    
+}
+
+#view-high-btn {
+    position:absolute;
+    top:0;
+    right:0;
+}
