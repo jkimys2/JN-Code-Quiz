@@ -16,58 +16,99 @@ var questions = [
   {
     question: "What does HTML stand for?",
     choices: [
-        "A: Hyperlinks and Text Markup Language"
-        "B: Home Tool Markup Language"
-        "C: Hyper Text Markup Language"
-        "D: Hyperlinks Tool Markup Language"
+        "A.  Hyperlinks and Text Markup Language",
+        "B.  Home Tool Markup Language",
+        "C.  Hyper Text Markup Language",
+        "D.  Hyperlinks Tool Markup Language",
     ],
-    answer: "C",
+    answer: "C.  Hyper Text Markup Language",
   },
   {
     question:
       "Which of these are the correct HTML element for the largest heading?",
-    choices: ["A", "B", "C", "D"],
-    answer: "A",
+      choices: [
+        "A.  <h1>",
+        "B.  <h6>",
+        "C.  <heading>",
+        "D.  <head>",
+    ],
+    answer: "A.  <h1>",
   },
   {
     question: "Which character is used to indicate an end tag?",
-    choices: ["A", "B", "C", "D"],
-    answer: "A",
+    choices: [
+        "A.  <",
+        "B.  /",
+        "C.  *",
+        "D.  ^",
+    ],
+    answer: "B.  /",
   },
   {
     question: "What does CSS stand for?",
-    choices: ["A", "B", "C", "D"],
-    answer: "A",
+    choices: [
+        "A.  Computer Style Sheets",
+        "B.  Cascading Style Sheets",
+        "C.  Creative Style Sheets",
+        "D.  Colorful Style Sheets",
+    ],
+    answer: "B.  Cascading Style Sheets",
   },
   {
     question: "Which CSS property controls the text size?",
-    choices: ["A", "B", "C", "D"],
-    answer: "A",
+    choices: [
+        "A.  font-style",
+        "B.  text-size",
+        "C.  text-style",
+        "D.  font-size",
+    ],
+    answer: "D.  font-size",
   },
   {
     question: "How do you select elements with a class name of 'test'?",
-    choices: ["A", "B", "C", "D"],
-    answer: "A",
+    choices: [
+        "A.  #test",
+        "B.  .test",
+        "C.  test",
+        "D.  *test",
+    ],
+    answer: "B.  .test",
   },
   {
     question: "Which HTML element does JavaScript go in?",
-    choices: ["A", "B", "C", "D"],
-    answer: "A",
+    choices: [
+        "A.  <script>",
+        "B.  <javascript>",
+        "C.  <js>",
+        "D.  <scripting>",
+    ],
+    answer: "A.  <script>",
   },
   {
     question: "True or False: JavaScript is the same as Java.",
-    choices: ["A", "B", "C", "D"],
-    answer: "A",
+    choices: [
+        "A.  True",
+        "B.  False",
+    ],
+    answer: "B.  False",
   },
   {
     question: "Which operator is used to assign a value to a variable?",
-    choices: ["A", "B", "C", "D"],
-    answer: "A",
+    choices: [
+        "A.  -",
+        "B.  X",
+        "C.  *",
+        "D.  =",
+    ],
+    answer: "D.  =",
   },
   {
     question: "True or False: JavaScript is case-sensitive.",
-    choices: ["A", "B", "C", "D"],
-    answer: "A",
+    choices: [
+        "A.  True",
+        "B.  False",
+    ],
+    answer: "A.  True",
   },
 ];
 
