@@ -17,5 +17,11 @@ body {
 #view-high-btn {
     position:absolute;
     top:0;
+    left:0;
+}
+
+#timer {
+    position:absolute;
+    top:0;
     right:0;
 }
