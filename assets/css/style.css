@@ -21,7 +21,7 @@ h1 {
 h2 {
     font-size: 30px;
     color: aliceblue;
-    margin-bottom: 25px;
+    margin: 20px 0;
     text-align: center;
 }
 
@@ -101,8 +101,10 @@ p {
 }
 
 .input {
-    padding: 10px 0;
-    width: 500px;
+    margin: 20px 0 10px 15px;
+    padding: 5px;
+    width: 350px;
     font-size: 20px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    text-align: center;
 }

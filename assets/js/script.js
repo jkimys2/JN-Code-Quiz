@@ -166,8 +166,7 @@ function endGame() {
     var gameOverInput = document.createElement("input");
     gameOverInput.type = "text";
     gameOverInput.setAttribute("class", "input");
-    // gameOverInput.textContent = "Enter Initials: " +
-    document.getElementsByClassName("save-score").appendChild(gameOverInput);
+    document.getElementById("initials").appendChild(gameOverInput);
   // get score variable 
   // get time left variable
   // display end game screen with input for initials
