@@ -164,8 +164,9 @@ function endGame() {
     quizScreen.classList.add("hide");
     gameOverPage.classList.remove("hide");
     var gameOverInput = document.createElement("input");
-    gameOverInput.setAttribute("class", "input")
-    gameOverInput.textContent = "Enter Initials: " +
+    gameOverInput.type = "text";
+    gameOverInput.setAttribute("class", "input");
+    // gameOverInput.textContent = "Enter Initials: " +
     document.getElementsByClassName("save-score").appendChild(gameOverInput);
   // get score variable 
   // get time left variable
