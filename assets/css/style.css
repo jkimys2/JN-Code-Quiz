@@ -53,10 +53,36 @@ p {
     position:absolute;
     top:0;
     left:0;
+    font-size: 25px;
+    padding: 5px 0;
+    width: 200px;
+    text-align: center;
+    background-color: rgb(28, 162, 169);
+    border-radius: 10px;
+}
+
+#view-high-btn:hover {
+    cursor: pointer;
+    box-shadow: 0 2px 2px 2px aliceblue
 }
 
 #timer {
     position:absolute;
     top:0;
     right:0;
+}
+
+.btn {
+    font-size: 25px;
+    padding: 10px 0;
+    width: 500px;
+    text-align: center;
+    background-color: rgb(28, 162, 169);
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.btn:hover {
+    cursor: pointer;
+    box-shadow: 0 2px 2px 2px aliceblue
 }
