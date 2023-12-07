@@ -19,9 +19,10 @@ h1 {
 }
 
 h2 {
-    font-size: 25px;
+    font-size: 30px;
     color: aliceblue;
-    margin-bottom: 5px;
+    margin-bottom: 25px;
+    text-align: center;
 }
 
 h3 {
@@ -35,6 +36,8 @@ p {
     color: aliceblue;
     margin: 40px 0;
     text-align: center;
+    font-size: 17px;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
 }
 
 .card {
@@ -87,4 +90,8 @@ p {
 .btn:hover {
     cursor: pointer;
     box-shadow: 0 2px 2px 2px aliceblue
+}
+
+.quiz-screen {
+    align-items: center;
 }

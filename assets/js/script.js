@@ -112,22 +112,27 @@ var questions = [
   },
 ];
 
+// function to start quiz when clicking start quiz button
 function startQuiz() {
   document.querySelector(".start-screen").classList.add("hide");
   quizScreen.classList.remove("hide");
   askQuestion();
   timerInterval = setInterval(clockTick, 1000);
-}
+};
+
+// function for timer
 function clockTick() {
   timeLeft--;
-  timeEl.textContent = timeLeft;
+  timeEl.textContent = "Time :  " + timeLeft;
   if (timeLeft <= 0) {
     timeLeft = 0;
     timeEl.textContent = 0;
     clearInterval(timerInterval);
-  }
+  };
   console.log(timeLeft);
-}
+};
+
+// funtion to call questions and allow user to choose answer
 function askQuestion() {
   document.getElementById("answers").innerHTML = " ";
   questionsEl.textContent = questions[QI].question;
@@ -137,7 +142,6 @@ function askQuestion() {
     btn.setAttribute("value", choice);
     btn.textContent = choice;
     btn.onclick = function () {
-      console.log(this);
       if (this.value === questions[QI].answer) {
         score++;
       } else {
@@ -152,20 +156,25 @@ function askQuestion() {
     };
     document.getElementById("answers").appendChild(btn);
   });
-}
+};
 
+// function that ends game once timer or questions run out
 function endGame() {
   // get score variable
   // get time left variable
   // display end game screen with input for initials
   // add button
-}
+};
+
+// function to save game score
 function saveScore() {
   // get initials and score
   // wrap those in object
   // push each score object to high scores array
   // save to local storage
-}
+};
+
+// function to display highscore
 function displayScores() {
   // get scores from local storage
   // use .sort method to put them in order
@@ -173,4 +182,6 @@ function displayScores() {
   // create li for each score
   // append to preexisting ul
 }
+
+// starts the game once button is clicked
 startEl.addEventListener("click", startQuiz);
