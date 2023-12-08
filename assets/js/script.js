@@ -123,13 +123,13 @@ function askQuestion() {
         score++;
       } else {
         timeLeft -= 10;
-      }
+      };
       QI++;
       if (QI === questions.length) {
         quizScreen.classList.add("hide");
       } else {
         askQuestion();
-      }
+      };
     };
     document.getElementById("answers").appendChild(btn);
   });
@@ -168,4 +168,4 @@ function displayScores() {
 
 // starts the game once button is clicked
 startEl.addEventListener("click", startQuiz);
-
+// viewHighscore.addEventListener("click", highscore page)
