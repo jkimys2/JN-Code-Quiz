@@ -1,4 +1,4 @@
-// these are the variables that call the html elements
+// variables that call the html elements
 var startEl = document.querySelector(".start-quiz");
 var quizScreen = document.querySelector(".quiz-screen");
 var gameOverPage = document.querySelector(".save-score");
@@ -6,13 +6,15 @@ var highscorePage = document.querySelector(".highscore-page");
 var viewHighscore = document.querySelector("#view-high-btn")
 var questionsEl = document.querySelector("#questions");
 // var answerChoices = document.querySelector("#answers");
+var timeEl = document.getElementById("timer");
+
+// global variables
 var timerInterval;
 var timeLeft = 10;
-var timeEl = document.getElementById("timer");
 var QI = 0;
 var score = 0;
 
-// these are the array of questions and answers
+// array of questions and answers
 var questions = [
   {
     question: "What does HTML stand for?",
@@ -101,7 +103,7 @@ function clockTick() {
   timeEl.textContent = "Time :  " + timeLeft;
   if (timeLeft <= 0) {
     timeLeft = 0;
-    timeEl.textContent = 0;
+    timeEl.textContent = "Out of time 🥺";
     clearInterval(timerInterval);
     endGame();
   }
