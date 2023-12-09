@@ -10,7 +10,7 @@ var timeEl = document.getElementById("timer");
 
 // global variables
 var timerInterval;
-var timeLeft = 10;
+var timeLeft = 100;
 var QI = 0;
 var score = 0;
 
@@ -120,19 +120,23 @@ function askQuestion() {
     btn.textContent = choice;
     btn.onclick = function () {
       if (this.value === questions[QI].answer) {
-        score++;
+        score += 10;
       } else {
         timeLeft -= 10;
       };
       QI++;
       if (QI === questions.length) {
         quizScreen.classList.add("hide");
+        clearInterval(timerInterval);
+        timeEl.textContent = "";
+        endGame();
       } else {
         askQuestion();
       };
     };
     document.getElementById("answers").appendChild(btn);
-  });
+  })
+  ;
 }
 
 // function that ends game once timer or questions run out
@@ -143,6 +147,14 @@ function endGame() {
   gameOverInput.type = "text";
   gameOverInput.setAttribute("class", "input");
   document.getElementById("initials").appendChild(gameOverInput);
+  var finalScore = (score + timeLeft);
+  document.getElementById("final").textContent = "Your final score is: " + finalScore;
+
+
+
+  // function finalScore() {
+  //   score + timeLeft
+  // }
   // get score variable
   // get time left variable
   // display end game screen with input for initials
