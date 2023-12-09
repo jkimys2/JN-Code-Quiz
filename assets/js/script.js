@@ -146,45 +146,58 @@ function endGame() {
   gameOverPage.classList.remove("hide");
   var finalScore = (score + timeLeft);
   document.getElementById("final").textContent = "Your final score is: " + finalScore + "!";
-  initialBox();
+  
+  var gameOverInput = document.createElement("input");
+  // gameOverInput.type = "text";
+  gameOverInput.setAttribute("text", "text");
+  gameOverInput.setAttribute("class", "input");
+  document.getElementById("initials").appendChild(gameOverInput);
+
+  function saveScore() {
+    var gameScore = {
+      initial: gameOverInput.value.trim(),
+      score: finalScore,
+    };
+    localStorage.setItem("GameScore", JSON.stringify(gameScore)); 
+  };  
+  
+  saveBtn.onclick = function(event) {
+    event.preventDefault();
+    saveScore();
+    displayScores();
+  };
+  
     // get score variable
   // get time left variable
   // display end game screen with input for initials
   // add button
 };
 
-function initialBox() {
-  var gameOverInput = document.createElement("input");
-  // gameOverInput.type = "text";
-  gameOverInput.setAttribute("text", "text");
-  gameOverInput.setAttribute("class", "input");
-  document.getElementById("initials").appendChild(gameOverInput);
-}
 
-// function genFinalScore() {
-//   var finalScore = (score + timeLeft);
-//   document.getElementById("final").textContent = "Your final score is: " + finalScore + "!";
-// };
-
-
-function saveScore() {
-  var gameScore = {
-    initial: gameOverInput.value.trim(),
-    score: finalScore,
-  };
-  localStorage.setItem("GameScore", JSON.stringify(gameScore)); 
-};  
-
-saveBtn.onclick = function(event) {
-  event.preventDefault();
-  saveScore();
-  gameOverPage.classList.add("hide");
-  highscorePage.classList.remove("hide");
-};
 
 // function to display highscore
 function displayScores() {
+  gameOverPage.classList.add("hide");
+  highscorePage.classList.remove("hide");
+ 
   var showHighscores = JSON.parse(localStorage.getItem("GameScore"));
+  
+  if (showHighscores !== null) {
+    document.getElementById("show-scores").textContent = showHighscores.initial + ":  " + showHighscores.score;
+  };
+
+  showHighscores.sort();
+
+  var highscoreUl = document.createElement("ul");
+  highscoreUl.setAttribute("style", "padding: 0; margin: 0;");
+  highscoreUl.setAttribute("id", "theList");
+  for (i = 0; i <= arr.length - 1; i++) {
+    var highScoreLi = document.createElement('li');
+    highScoreLi.innerHTML = arr[i];
+    highScoreLi.setAttribute("style", "display: block;");
+    highscoreUl.appendChild(highScoreLi);
+}
+  // var 
   // get scores from local storage
   // use .sort method to put them in order
   // loop over scores
