@@ -181,12 +181,11 @@ function displayScores() {
   highscorePage.classList.remove("hide");
  
   var showHighscores = JSON.parse(localStorage.getItem("GameScore"));
-  
+  showHighscores.sort();
+
   if (showHighscores !== null) {
     document.getElementById("show-scores").textContent = showHighscores.initial + ":  " + showHighscores.score;
   };
-
-  showHighscores.sort();
 
   var highscoreUl = document.createElement("ul");
   highscoreUl.setAttribute("style", "padding: 0; margin: 0;");
@@ -196,14 +195,25 @@ function displayScores() {
     highScoreLi.innerHTML = arr[i];
     highScoreLi.setAttribute("style", "display: block;");
     highscoreUl.appendChild(highScoreLi);
-}
+};
+
+document.querySelector(".go-back").onclick = function(event) {
+  event.preventDefault();
+  highscorePage.classList.add("hide");
+  document.querySelector(".start-screen").classList.remove("hide");
+};
+
+document.querySelector(".go-back").onclick = function(event) {
+  event.preventDefault();
+  localStorage.clear();
+};
   // var 
   // get scores from local storage
   // use .sort method to put them in order
   // loop over scores
   // create li for each score
   // append to preexisting ul
-}
+};
 
 // starts the game once button is clicked
 startEl.addEventListener("click", startQuiz);
