@@ -6,11 +6,12 @@ var highscorePage = document.querySelector(".highscore-page");
 var viewHighscore = document.querySelector("#view-high-btn")
 var questionsEl = document.querySelector("#questions");
 // var answerChoices = document.querySelector("#answers");
-var timeEl = document.getElementById("timer");
+var timeEl = document.querySelector("#timer");
+var saveBtn = document.querySelector(".save-btn");
 
 // global variables
 var timerInterval;
-var timeLeft = 100;
+var timeLeft = 50;
 var QI = 0;
 var score = 0;
 
@@ -143,34 +144,47 @@ function askQuestion() {
 function endGame() {
   quizScreen.classList.add("hide");
   gameOverPage.classList.remove("hide");
-  var gameOverInput = document.createElement("input");
-  gameOverInput.type = "text";
-  gameOverInput.setAttribute("class", "input");
-  document.getElementById("initials").appendChild(gameOverInput);
   var finalScore = (score + timeLeft);
-  document.getElementById("final").textContent = "Your final score is: " + finalScore;
-
-
-
-  // function finalScore() {
-  //   score + timeLeft
-  // }
-  // get score variable
+  document.getElementById("final").textContent = "Your final score is: " + finalScore + "!";
+  initialBox();
+    // get score variable
   // get time left variable
   // display end game screen with input for initials
   // add button
+};
+
+function initialBox() {
+  var gameOverInput = document.createElement("input");
+  // gameOverInput.type = "text";
+  gameOverInput.setAttribute("text", "text");
+  gameOverInput.setAttribute("class", "input");
+  document.getElementById("initials").appendChild(gameOverInput);
 }
 
-// function to save game score
+// function genFinalScore() {
+//   var finalScore = (score + timeLeft);
+//   document.getElementById("final").textContent = "Your final score is: " + finalScore + "!";
+// };
+
+
 function saveScore() {
-  // get initials and score
-  // wrap those in object
-  // push each score object to high scores array
-  // save to local storage
-}
+  var gameScore = {
+    initial: gameOverInput.value.trim(),
+    score: finalScore,
+  };
+  localStorage.setItem("GameScore", JSON.stringify(gameScore)); 
+};  
+
+saveBtn.onclick = function(event) {
+  event.preventDefault();
+  saveScore();
+  gameOverPage.classList.add("hide");
+  highscorePage.classList.remove("hide");
+};
 
 // function to display highscore
 function displayScores() {
+  var showHighscores = JSON.parse(localStorage.getItem("GameScore"));
   // get scores from local storage
   // use .sort method to put them in order
   // loop over scores
