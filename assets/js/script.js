@@ -3,11 +3,13 @@ var startEl = document.querySelector(".start-quiz");
 var quizScreen = document.querySelector(".quiz-screen");
 var gameOverPage = document.querySelector(".save-score");
 var highscorePage = document.querySelector(".highscore-page");
-var viewHighscore = document.querySelector("#view-high-btn")
+var viewHighscore = document.querySelector("#view-high-btn");
 var questionsEl = document.querySelector("#questions");
 // var answerChoices = document.querySelector("#answers");
 var timeEl = document.querySelector("#timer");
 var saveBtn = document.querySelector(".save-btn");
+var goBackBtn = document.querySelector(".go-back");
+var clearScoreBtn = document.querySelector(".clear-score");
 
 // global variables
 var timerInterval;
@@ -124,7 +126,7 @@ function askQuestion() {
         score += 10;
       } else {
         timeLeft -= 10;
-      };
+      }
       QI++;
       if (QI === questions.length) {
         quizScreen.classList.add("hide");
@@ -133,20 +135,20 @@ function askQuestion() {
         endGame();
       } else {
         askQuestion();
-      };
+      }
     };
     document.getElementById("answers").appendChild(btn);
-  })
-  ;
+  });
 }
 
 // function that ends game once timer or questions run out
 function endGame() {
   quizScreen.classList.add("hide");
   gameOverPage.classList.remove("hide");
-  var finalScore = (score + timeLeft);
-  document.getElementById("final").textContent = "Your final score is: " + finalScore + "!";
-  
+  var finalScore = score + timeLeft;
+  document.getElementById("final").textContent =
+    "Your final score is: " + finalScore + "!";
+
   var gameOverInput = document.createElement("input");
   // gameOverInput.type = "text";
   gameOverInput.setAttribute("text", "text");
@@ -158,62 +160,62 @@ function endGame() {
       initial: gameOverInput.value.trim(),
       score: finalScore,
     };
-    localStorage.setItem("GameScore", JSON.stringify(gameScore)); 
-  };  
-  
-  saveBtn.onclick = function(event) {
+    localStorage.setItem("GameScore", JSON.stringify(gameScore));
+  }
+
+  saveBtn.onclick = function (event) {
     event.preventDefault();
     saveScore();
     displayScores();
   };
-  
-    // get score variable
+
+  // get score variable
   // get time left variable
   // display end game screen with input for initials
   // add button
-};
-
-
+}
 
 // function to display highscore
 function displayScores() {
   gameOverPage.classList.add("hide");
   highscorePage.classList.remove("hide");
- 
+
   var showHighscores = JSON.parse(localStorage.getItem("GameScore"));
-  showHighscores.sort();
 
   if (showHighscores !== null) {
     document.getElementById("show-scores").textContent = showHighscores.initial + ":  " + showHighscores.score;
   };
+  showHighscores.sort();
 
   var highscoreUl = document.createElement("ul");
   highscoreUl.setAttribute("style", "padding: 0; margin: 0;");
-  highscoreUl.setAttribute("id", "theList");
+  highscoreUl.setAttribute(showHighscores);
   for (i = 0; i <= arr.length - 1; i++) {
-    var highScoreLi = document.createElement('li');
+    var highScoreLi = document.createElement("li");
     highScoreLi.innerHTML = arr[i];
     highScoreLi.setAttribute("style", "display: block;");
     highscoreUl.appendChild(highScoreLi);
-};
+  }
 
-document.querySelector(".go-back").onclick = function(event) {
-  event.preventDefault();
-  highscorePage.classList.add("hide");
-  document.querySelector(".start-screen").classList.remove("hide");
-};
+  goBackBtn.onclick = function (event) {
+    event.preventDefault();
+    highscorePage.classList.add("hide");
+    document.querySelector(".start-screen").classList.remove("hide");    
+  };
 
-document.querySelector(".go-back").onclick = function(event) {
-  event.preventDefault();
-  localStorage.clear();
-};
-  // var 
+  clearScoreBtn.onclick = function (event) {
+    event.preventDefault();
+    localStorage.clear();
+    showHighscores.textContent = "";
+  };
+  // var
   // get scores from local storage
   // use .sort method to put them in order
   // loop over scores
   // create li for each score
   // append to preexisting ul
 };
+
 
 // starts the game once button is clicked
 startEl.addEventListener("click", startQuiz);
