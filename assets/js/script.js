@@ -185,14 +185,14 @@ function displayScores() {
   if (showHighscores !== null) {
     document.getElementById("show-scores").textContent = showHighscores.initial + ":  " + showHighscores.score;
   };
-  showHighscores.sort();
+  // showHighscores.sort();
 
   var highscoreUl = document.createElement("ul");
   highscoreUl.setAttribute("style", "padding: 0; margin: 0;");
-  highscoreUl.setAttribute(showHighscores);
-  for (i = 0; i <= arr.length - 1; i++) {
+  // highscoreUl.setAttribute(showHighscores);
+  for (i = 0; i <= showHighscores.length - 1; i++) {
     var highScoreLi = document.createElement("li");
-    highScoreLi.innerHTML = arr[i];
+    highScoreLi.innerHTML = showHighscores[i];
     highScoreLi.setAttribute("style", "display: block;");
     highscoreUl.appendChild(highScoreLi);
   }
@@ -205,8 +205,8 @@ function displayScores() {
 
   clearScoreBtn.onclick = function (event) {
     event.preventDefault();
-    localStorage.clear();
-    showHighscores.textContent = "";
+    localStorage.removeItem("GameScore");
+    document.getElementById("show-scores").textContent = "";
   };
   // var
   // get scores from local storage
