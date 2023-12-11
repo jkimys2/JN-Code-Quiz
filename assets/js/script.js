@@ -5,7 +5,6 @@ var gameOverPage = document.querySelector(".save-score");
 var highscorePage = document.querySelector(".highscore-page");
 var viewHighscore = document.querySelector("#view-high-btn");
 var questionsEl = document.querySelector("#questions");
-// var answerChoices = document.querySelector("#answers");
 var timeEl = document.querySelector("#timer");
 var saveBtn = document.querySelector(".save-btn");
 var goBackBtn = document.querySelector(".go-back");
@@ -17,6 +16,7 @@ var timeLeft;
 var QI = 0;
 var score = 0;
 var gameScore = [];
+viewHighscore.disabled = false;
 
 // array of questions and answers
 var questions = [
@@ -93,14 +93,13 @@ var questions = [
   },
 ];
 
-
 // function to start quiz when clicking start quiz button
 function startQuiz() {
   document.querySelector(".start-screen").classList.add("hide");
   // startEl.classList.add("hide");
   quizScreen.classList.remove("hide");
   askQuestion();
-  timeLeft = 50;
+  timeLeft = 100;
   timerInterval = setInterval(clockTick, 1000);
 }
 
@@ -143,6 +142,7 @@ function askQuestion() {
     };
     document.getElementById("answers").appendChild(btn);
   });
+  viewHighscore.disabled = true;
 }
 
 // function that ends game once timer or questions run out
@@ -158,6 +158,7 @@ function endGame() {
   gameOverInput.setAttribute("class", "input");
   document.getElementById("initials").appendChild(gameOverInput);
 
+  // click event for saving score
   saveBtn.onclick = function (event) {
     event.preventDefault();
     var inputInitial = gameOverInput.value.trim();
@@ -169,13 +170,13 @@ function endGame() {
       gameScore = JSON.parse(localStorage.getItem("GameScore")) || [];
       gameScore.push(newScore);
       localStorage.setItem("GameScore", JSON.stringify(gameScore));
-    };
+    }
     displayHighscores();
     gameOverInput.value = "";
-    gameOverInput.reset();
   };
-};
+}
 
+// function to show highscores page
 function displayHighscores() {
   gameOverPage.classList.add("hide");
   document.querySelector(".code-quiz").classList.add("hide");
@@ -183,42 +184,48 @@ function displayHighscores() {
   highscorePage.classList.remove("hide");
 
   for (var i = 0; i < gameScore.length; i++) {
-    var previousScores = document.createElement("li");
-    previousScores.setAttribute("style", "list-style-type: none; padding: 2px; margin: 0;")
-    previousScores.innerHTML = gameScore[i].initial +": " + gameScore[i].score;
-    document.getElementById("show-scores").appendChild(previousScores);
+    var scoreLi = document.createElement("li");
+    scoreLi.setAttribute(
+      "style",
+      "list-style-type: none; padding: 2px; margin: 0;"
+    );
+    scoreLi.innerHTML = gameScore[i].initial + ": " + gameScore[i].score;
+    document.getElementById("show-scores").appendChild(scoreLi);
+  }
+  viewHighscore.disabled = true;
+
+  //  click event for "try again" button
+  goBackBtn.onclick = function (event) {
+    event.preventDefault();
+    highscorePage.classList.add("hide");
+    resetGame();
+    document.querySelector(".start-screen").classList.remove("hide");
   };
-};
 
+  // click event to clear saved scores in local storage
+  clearScoreBtn.onclick = function (event) {
+    event.preventDefault();
+    localStorage.removeItem("GameScore");
+    document.getElementById("show-scores").textContent = "";
+  };
+}
+
+//  function to reset game
 function resetGame() {
- score = 0;
- QI = 0;
- timeLeft = 50;
- document.querySelector(".code-quiz").classList.remove("hide");
- document.querySelector(".p-tag").classList.remove("hide");
-};
+  score = 0;
+  QI = 0;
+  timeLeft = 100;
+  viewHighscore.disabled = false;
+  document.querySelector(".code-quiz").classList.remove("hide");
+  document.querySelector(".p-tag").classList.remove("hide");
+}
 
-function viewHighscoreBtn() {
-  startEl.classList.add("hide");
-  quizScreen.classList.add("hide");
-  gameOverPage.classList.add("hide");
+// click event for "View Higscores!" button
+viewHighscore.onclick = function (event) {
+  event.preventDefault();
   document.querySelector(".start-screen").classList.add("hide");
   displayHighscores();
 };
 
 // starts the game once button is clicked
 startEl.addEventListener("click", startQuiz);
-viewHighscore.addEventListener("click", viewHighscoreBtn);
-
-goBackBtn.onclick = function (event) {
-  event.preventDefault();
-  highscorePage.classList.add("hide");
-  resetGame();
-  startQuiz();
-};
-
-clearScoreBtn.onclick = function (event) {
-  event.preventDefault();
-  localStorage.removeItem("GameScore");
-  document.getElementById("show-scores").textContent = "";
-};
