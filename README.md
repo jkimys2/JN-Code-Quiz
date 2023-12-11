@@ -17,3 +17,22 @@ THEN the game is over
 WHEN the game is over
 THEN I can save my initials and my score
 ```
+
+This challenge has helped me solidify my skills in using web API's as well as strengthened my JavaScipt knowledge. This was the most challenging project to date, but it has helped me learn the most. I faced many challenges such as local storage or timer issues, but with the knowledge provided from class as well as the documentations, I was able to complete the assignment. 
+
+This quiz was accomplished by setting up an initial HTML page and adding some components to it. Then the CSS was added to style everything on the page, such as the buttons. The JavaScript page was added last to add functionality to the page.
+
+## Usage
+
+There was no starter code provided for this project. All of the HTML, CSS, and JavaScript files were created from scratch. The image below shows the final product:
+
+![Final Quiz](./assets/images/screenshot.png)
+
+## Credits
+
+Thank you Corey Yates and Michael Hodges for all your help! 😊👍
+
+## Links
+
+https://github.com/jkimys2/JN-Code-Quiz
+
