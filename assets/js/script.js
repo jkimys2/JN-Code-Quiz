@@ -167,33 +167,30 @@ function endGame() {
       score: finalScore,
     };
     localStorage.setItem("GameScore", JSON.stringify(gameScore));
-    displayScores();
+    displayHighscores();
   };
 };
 
 // function to display highscore page
-function displayScores() {
+function displayHighscores() {
   gameOverPage.classList.add("hide");
   highscorePage.classList.remove("hide");
-  
   var showHighScores = JSON.parse(localStorage.getItem("GameScore"));
   for (var i = 0; i < showHighScores.length; i++) {
-    
+    var previousScores = document.createElement("li");
+    previousScores.setAttribute("style", "list-style-type: none; padding: 0; margin: 0;")
+    previousScores.innerHTML = showHighScores.initial +": " + showHighScores.score;
+    document.getElementById("show-scores").appendChild(previousScores);
   }
+
   // if (showHighScores === null) {
   //   document.getElementById("show-scores").textContent = "No Saved Scores";
   // } else {
   //   gameScore = showHighScores;
   // }
+  
   document.getElementById("show-scores").innerHTML =
-    gameScore.initial + ": " + gameScore.score;
-
-  clearScoreBtn.onclick = function (event) {
-    event.preventDefault();
-    localStorage.removeItem("GameScore");
-    document.getElementById("show-scores").textContent = "";
-  };
-
+    showHighScores.initial + ": " + showHighScores.score;
 
 
   // get scores from local storage
@@ -207,15 +204,14 @@ function resetGame() {
  score = 0;
  QI = 0;
  timeLeft = 50;
- gameOverInput = 
-}
+};
 
 function viewHighscoreBtn() {
   startEl.classList.add("hide");
   quizScreen.classList.add("hide");
   gameOverPage.classList.add("hide");
   document.querySelector(".start-screen").classList.add("hide");
-  displayScores();
+  displayHighscores();
 }
 
 // function getScores() {
@@ -227,6 +223,7 @@ function viewHighscoreBtn() {
 // starts the game once button is clicked
 startEl.addEventListener("click", startQuiz);
 viewHighscore.addEventListener("click", viewHighscoreBtn);
+
 goBackBtn.onclick = function (event) {
   event.preventDefault();
   highscorePage.classList.add("hide");
@@ -234,4 +231,9 @@ goBackBtn.onclick = function (event) {
   startQuiz();
 };
 
+clearScoreBtn.onclick = function (event) {
+  event.preventDefault();
+  localStorage.removeItem("GameScore");
+  document.getElementById("show-scores").textContent = "";
+};
 
