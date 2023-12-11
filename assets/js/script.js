@@ -1,5 +1,5 @@
 // variables that call the html elements
-var startEl = document.querySelector(".start-screen");
+var startEl = document.querySelector(".start-quiz");
 var quizScreen = document.querySelector(".quiz-screen");
 var gameOverPage = document.querySelector(".save-score");
 var highscorePage = document.querySelector(".highscore-page");
@@ -13,7 +13,7 @@ var clearScoreBtn = document.querySelector(".clear-score");
 
 // global variables
 var timerInterval;
-var timeLeft = 50;
+var timeLeft;
 var QI = 0;
 var score = 0;
 
@@ -92,12 +92,17 @@ var questions = [
   },
 ];
 
+function init() {
+  getScores();
+}
+
 // function to start quiz when clicking start quiz button
 function startQuiz() {
-  // document.querySelector(".start-screen").classList.add("hide");
-  startEl.classList.add("hide");
+  document.querySelector(".start-screen").classList.add("hide");
+  // startEl.classList.add("hide");
   quizScreen.classList.remove("hide");
   askQuestion();
+  timeLeft = 50;
   timerInterval = setInterval(clockTick, 1000);
 }
 
@@ -113,7 +118,7 @@ function clockTick() {
   }
 }
 
-// function to call questions and allow user to choose answer
+// function to call questions
 function askQuestion() {
   document.getElementById("answers").innerHTML = " ";
   questionsEl.textContent = questions[QI].question;
@@ -140,63 +145,48 @@ function askQuestion() {
     };
     document.getElementById("answers").appendChild(btn);
   });
-};
+}
 
 // function that ends game once timer or questions run out
 function endGame() {
   quizScreen.classList.add("hide");
   gameOverPage.classList.remove("hide");
   var finalScore = score + timeLeft;
-  document.getElementById("final").textContent = "Your final score is: " + finalScore + "!";
+  document.getElementById("final").textContent =
+    "Your final score is: " + finalScore + "!";
 
   var gameOverInput = document.createElement("input");
   gameOverInput.setAttribute("text", "text");
   gameOverInput.setAttribute("class", "input");
   document.getElementById("initials").appendChild(gameOverInput);
 
-  function saveScore() {
+  saveBtn.onclick = function (event) {
+    event.preventDefault();
     var gameScore = {
       initial: gameOverInput.value.trim(),
       score: finalScore,
     };
     localStorage.setItem("GameScore", JSON.stringify(gameScore));
-    // if(!localStorage.getItem("GameScore") || JSON.parse(localStorage.getItem("GameScore")).length === 0) {
-    //   localStorage.setItem("GameScore", JSON.stringify(gameScore));
-    // };
-};
-
-  saveBtn.onclick = function (event) {
-    event.preventDefault();
-    saveScore();
     displayScores();
   };
-
-  // get score variable
-  // get time left variable
-  // display end game screen with input for initials
-  // add button
 };
 
-// function to display highscore
+// function to display highscore page
 function displayScores() {
   gameOverPage.classList.add("hide");
   highscorePage.classList.remove("hide");
-
-  var showHighscores = JSON.parse(localStorage.getItem("GameScore"));
-
-  if (showHighscores !== null) {
-    document.getElementById("show-scores").textContent = showHighscores.initial + ":  " + showHighscores.score;
-  };
-
-  // var highscoreUl = document.createElement("ul");
-  // highscoreUl.setAttribute("style", "padding: 0; margin: 0;");
-
-  // for (i = 0; i <= showHighscores.length - 1; i++) {
-  //   var highScoreLi = document.createElement("li");
-  //   highScoreLi.innerHTML = showHighscores[i];
-  //   highScoreLi.setAttribute("style", "display: block;");
-  //   highscoreUl.appendChild(highScoreLi);
+  
+  var showHighScores = JSON.parse(localStorage.getItem("GameScore"));
+  for (var i = 0; i < showHighScores.length; i++) {
+    
+  }
+  // if (showHighScores === null) {
+  //   document.getElementById("show-scores").textContent = "No Saved Scores";
+  // } else {
+  //   gameScore = showHighScores;
   // }
+  document.getElementById("show-scores").innerHTML =
+    gameScore.initial + ": " + gameScore.score;
 
   clearScoreBtn.onclick = function (event) {
     event.preventDefault();
@@ -204,27 +194,44 @@ function displayScores() {
     document.getElementById("show-scores").textContent = "";
   };
 
-  goBackBtn.onclick = function (event) {
-    event.preventDefault();
-    highscorePage.classList.add("hide");
-    startEl.classList.remove("hide");
-  };
-  // var
+
+
   // get scores from local storage
   // use .sort method to put them in order
   // loop over scores
   // create li for each score
   // append to preexisting ul
-};
-// function resetGame() {
+}
 
-// }
+function resetGame() {
+ score = 0;
+ QI = 0;
+ timeLeft = 50;
+ gameOverInput = 
+}
+
 function viewHighscoreBtn() {
   startEl.classList.add("hide");
   quizScreen.classList.add("hide");
   gameOverPage.classList.add("hide");
-  highscorePage.classList.remove("hide");
+  document.querySelector(".start-screen").classList.add("hide");
+  displayScores();
 }
+
+// function getScores() {
+//   var storedWins = JSON.parse(localStorage.getItem("GameScore"));
+//   if (storedWins === null) {
+
+//   }
+// }
 // starts the game once button is clicked
 startEl.addEventListener("click", startQuiz);
 viewHighscore.addEventListener("click", viewHighscoreBtn);
+goBackBtn.onclick = function (event) {
+  event.preventDefault();
+  highscorePage.classList.add("hide");
+  resetGame();
+  startQuiz();
+};
+
+
