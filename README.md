@@ -18,7 +18,7 @@ WHEN the game is over
 THEN I can save my initials and my score
 ```
 
-This challenge has helped me solidify my skills in using web API's as well as strengthened my JavaScipt knowledge. This was the most challenging project to date, but it has helped me learn the most. I faced many challenges such as local storage or timer issues, but with the knowledge provided from class as well as the documentations, I was able to complete the assignment. 
+This challenge has helped me solidify my skills in using web API's as well as strengthened my JavaScipt knowledge. This was the most challenging project to date, but it has helped me learn the most. I faced many challenges such as local storage and timer issues, but with the knowledge provided from class as well as documentations, I was able to complete the assignment. 
 
 This quiz was accomplished by setting up an initial HTML page and adding some components to it. Then the CSS was added to style everything on the page, such as the buttons. The JavaScript page was added last to add functionality to the page.
 
@@ -36,3 +36,4 @@ Thank you Corey Yates and Michael Hodges for all your help! 😊👍
 
 https://github.com/jkimys2/JN-Code-Quiz
 
+https://jkimys2.github.io/JN-Code-Quiz/
