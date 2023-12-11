@@ -16,6 +16,7 @@ var timerInterval;
 var timeLeft;
 var QI = 0;
 var score = 0;
+var gameScore = [];
 
 // array of questions and answers
 var questions = [
@@ -92,9 +93,6 @@ var questions = [
   },
 ];
 
-function init() {
-  getScores();
-}
 
 // function to start quiz when clicking start quiz button
 function startQuiz() {
@@ -162,48 +160,42 @@ function endGame() {
 
   saveBtn.onclick = function (event) {
     event.preventDefault();
-    var gameScore = {
-      initial: gameOverInput.value.trim(),
-      score: finalScore,
+    var inputInitial = gameOverInput.value.trim();
+    if (gameScore) {
+      var newScore = {
+        initial: inputInitial,
+        score: finalScore,
+      };
+      gameScore = JSON.parse(localStorage.getItem("GameScore")) || [];
+      gameScore.push(newScore);
+      localStorage.setItem("GameScore", JSON.stringify(gameScore));
     };
-    localStorage.setItem("GameScore", JSON.stringify(gameScore));
     displayHighscores();
+    gameOverInput.value = "";
+    gameOverInput.reset();
   };
 };
 
-// function to display highscore page
 function displayHighscores() {
   gameOverPage.classList.add("hide");
+  document.querySelector(".code-quiz").classList.add("hide");
+  document.querySelector(".p-tag").classList.add("hide");
   highscorePage.classList.remove("hide");
-  var showHighScores = JSON.parse(localStorage.getItem("GameScore"));
-  for (var i = 0; i < showHighScores.length; i++) {
+
+  for (var i = 0; i < gameScore.length; i++) {
     var previousScores = document.createElement("li");
-    previousScores.setAttribute("style", "list-style-type: none; padding: 0; margin: 0;")
-    previousScores.innerHTML = showHighScores.initial +": " + showHighScores.score;
+    previousScores.setAttribute("style", "list-style-type: none; padding: 2px; margin: 0;")
+    previousScores.innerHTML = gameScore[i].initial +": " + gameScore[i].score;
     document.getElementById("show-scores").appendChild(previousScores);
-  }
-
-  // if (showHighScores === null) {
-  //   document.getElementById("show-scores").textContent = "No Saved Scores";
-  // } else {
-  //   gameScore = showHighScores;
-  // }
-  
-  document.getElementById("show-scores").innerHTML =
-    showHighScores.initial + ": " + showHighScores.score;
-
-
-  // get scores from local storage
-  // use .sort method to put them in order
-  // loop over scores
-  // create li for each score
-  // append to preexisting ul
-}
+  };
+};
 
 function resetGame() {
  score = 0;
  QI = 0;
  timeLeft = 50;
+ document.querySelector(".code-quiz").classList.remove("hide");
+ document.querySelector(".p-tag").classList.remove("hide");
 };
 
 function viewHighscoreBtn() {
@@ -212,14 +204,8 @@ function viewHighscoreBtn() {
   gameOverPage.classList.add("hide");
   document.querySelector(".start-screen").classList.add("hide");
   displayHighscores();
-}
+};
 
-// function getScores() {
-//   var storedWins = JSON.parse(localStorage.getItem("GameScore"));
-//   if (storedWins === null) {
-
-//   }
-// }
 // starts the game once button is clicked
 startEl.addEventListener("click", startQuiz);
 viewHighscore.addEventListener("click", viewHighscoreBtn);
@@ -236,4 +222,3 @@ clearScoreBtn.onclick = function (event) {
   localStorage.removeItem("GameScore");
   document.getElementById("show-scores").textContent = "";
 };
-
